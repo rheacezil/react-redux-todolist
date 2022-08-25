@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as todoAction from "../redux/actions/actionTodo";
 
-function TodoHeader() {
+export default function TodoHeader() {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
+  const { addTodo } = bindActionCreators(todoAction, useDispatch());
 
   useEffect(() => {
     inputRef.current.focus();
@@ -10,7 +14,13 @@ function TodoHeader() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    addTodo({
+      id: Math.floor(Math.random() * 100000),
+      text: input,
+    });
+    setInput("");
   };
+
   return (
     <form onSubmit={handleSubmit} className="new-task-form">
       <div>
@@ -31,5 +41,3 @@ function TodoHeader() {
     </form>
   );
 }
-
-export default TodoHeader;
