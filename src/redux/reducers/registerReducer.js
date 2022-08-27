@@ -1,6 +1,6 @@
 import React from "react";
 const initialState = [
-  { username: "test1", email: "test1@email.com", password: 123 },
+  //   { username: "test1", email: "test1@email.com", password: "qwerty" },
 ];
 
 const registerReducer = (state = initialState, action) => {

@@ -1,8 +1,8 @@
+import { useState } from "react";
 import styles from "./Signup.css";
 import { Button, Form, Modal } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import * as registerAction from "../../redux/actions/actionRegister";
 
 export default function Signup() {
@@ -41,26 +41,23 @@ export default function Signup() {
       }
     });
 
-    // Check if password is the same with ConfirmPass
+    // Check if password is same with confirmPassword
     if (password !== confirmPassword) {
-      isValid = false;
       setInvalidPassword(true);
+      isValid = false;
     } else {
       setInvalidPassword(false);
     }
-    console.log("is valid", isValid);
+
     return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(checkIfValid());
     if (checkIfValid()) {
-      //console.log("valid");
       registerUser({ username, email, password });
       setShowModal(true);
     }
-    //console.log("invalid.");
   };
 
   const closeRegistration = () => {
@@ -87,7 +84,7 @@ export default function Signup() {
             isInvalid={invalidUsername}
           ></Form.Control>
           <Form.Control.Feedback type="invalid">
-            username already exists
+            username already exist.
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -99,11 +96,11 @@ export default function Signup() {
             placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
             isInvalid={invalidEmail}
+            autoComplete="email"
           ></Form.Control>
           <Form.Control.Feedback type="invalid">
-            email already exists
+            email already exist.
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -119,7 +116,7 @@ export default function Signup() {
             isInvalid={invalidPassword}
           ></Form.Control>
           <Form.Control.Feedback type="invalid">
-            The password confirmation does not match.
+            The password confirmation does not match
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -135,13 +132,13 @@ export default function Signup() {
             isInvalid={invalidPassword}
           ></Form.Control>
           <Form.Control.Feedback type="invalid">
-            The password confirmation does not match.
+            The password confirmation does not match
           </Form.Control.Feedback>
         </Form.Group>
 
         <Modal show={showModal}>
           <Modal.Header>
-            <Modal.Title className="text-dark">Congratulations!</Modal.Title>
+            <Modal.Title className="text-dark">Congratulation!</Modal.Title>
           </Modal.Header>
           <Modal.Body className="text-dark">
             Successful Registration!
